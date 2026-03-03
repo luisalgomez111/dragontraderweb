@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Config: Tu número de WhatsApp (incluye código de país sin el '+', ej: 584121234567)
-    const WHATSAPP_NUMBER = "584123456789"; // Reemplaza esto con tu número real
+    // Config: Tu enlace directo de WhatsApp
+    const WHATSAPP_LINK = "https://wa.me/qr/6ESRR5SYM4R7L1"; // Enlace QR proporcionado
 
     // Array with all the products (image, name, and price)
     const products = [
@@ -270,8 +270,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const encodedMessage = encodeURIComponent(message);
 
-        // Standard WhatsApp link
-        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+        // Append message to the QR link
+        const whatsappUrl = `${WHATSAPP_LINK}?text=${encodedMessage}`;
 
         window.open(whatsappUrl, '_blank');
     });
