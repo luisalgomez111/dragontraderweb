@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Config: Tu usuario de Telegram
-    const TELEGRAM_USER = "LuisAlGomez";
+    // Config: Tu número de WhatsApp (incluye código de país sin el '+', ej: 584121234567)
+    const WHATSAPP_NUMBER = "584123456789"; // Reemplaza esto con tu número real
 
     // Array with all the products (image, name, and price)
     const products = [
@@ -270,10 +270,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const encodedMessage = encodeURIComponent(message);
 
-        // Standard Telegram link
-        const telegramUrl = `https://t.me/${TELEGRAM_USER}?text=${encodedMessage}`;
+        // Standard WhatsApp link
+        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
 
-        window.open(telegramUrl, '_blank');
+        window.open(whatsappUrl, '_blank');
     });
 
     // Active nav
