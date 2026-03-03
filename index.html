@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Trader - Catálogo Digital | Importaciones China-Venezuela</title>
+    <meta name="description"
+        content="Catálogo digital de Dragon Trader. Descubre nuestra selección de mercancía importada directamente desde China a Venezuela. Calidad y buenos precios.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <h1>Dragon <span class="highlight">Trader</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#catalogo" class="active">Catálogo</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="container hero-content">
+                <h2>Importación Directa <br> <span class="highlight">China - Venezuela</span></h2>
+                <p>Descubre nuestra selección exclusiva de productos con la mejor relación calidad-precio. Traemos lo
+                    que necesitas directamente a tus manos.</p>
+                <a href="#catalogo" class="btn-primary">Ver Catálogo</a>
+            </div>
+        </section>
+
+        <section id="catalogo" class="catalog-section">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Nuestro <span class="highlight">Catálogo</span></h2>
+                    <p>Explora la mercancía disponible. Haz clic en cualquier producto para ampliar la imagen.</p>
+                </div>
+
+                <div id="catalog-grid" class="catalog-grid">
+                    <!-- Cards will be dynamically inserted here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Shopping Cart Floating Button -->
+        <div id="cart-btn" class="cart-btn">
+            <span class="cart-icon">🛒</span>
+            <span id="cart-count" class="cart-count">0</span>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <h2>Dragon Trader</h2>
+            </div>
+            <p>&copy; 2026 Dragon Trader. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Image Modal (Lightbox) -->
+    <div id="image-modal" class="modal">
+        <span class="close-btn">&times;</span>
+        <div class="modal-content">
+            <img id="modal-img" src="" alt="Producto Ampliado">
+            <div id="modal-caption" class="modal-caption"></div>
+            <button id="modal-add-cart" class="btn-primary modal-cart-btn">Agregar al Carrito</button>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Tu Carrito</h2>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be dynamically inserted here -->
+            <p class="empty-cart-msg">Tu carrito está vacío.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total Items:</span>
+                <span id="cart-total-count">0</span>
+            </div>
+
+            <form id="checkout-form" class="checkout-form">
+                <input type="text" id="cust-name" placeholder="Nombre y Apellido" required>
+                <input type="tel" id="cust-phone" placeholder="Teléfono" required>
+                <input type="email" id="cust-email" placeholder="Correo Electrónico" required>
+                <button type="submit" id="checkout-btn" class="btn-primary checkout-btn" disabled>Hacer Pedido por
+                    Telegram</button>
+            </form>
+        </div>
+    </div>
+    <div id="cart-overlay" class="cart-overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
