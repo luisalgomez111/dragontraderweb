@@ -90,8 +90,17 @@
         </div>
         <div class="cart-footer">
             <div class="cart-total">
-                <span>Total Items:</span>
-                <span id="cart-total-count">0</span>
+                <div style="display: flex; flex-direction: column; gap: 5px; width: 100%;">
+                    <div
+                        style="display: flex; justify-content: space-between; font-size: 1rem; color: var(--text-muted); font-weight: 600;">
+                        <span>Items:</span>
+                        <span id="cart-total-count">0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 800;">
+                        <span>Total estimado:</span>
+                        <span id="cart-total-price">$0.00</span>
+                    </div>
+                </div>
             </div>
 
             <form id="checkout-form" class="checkout-form">

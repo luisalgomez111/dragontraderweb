@@ -3,11 +3,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Config: Tu usuario de Telegram
     const TELEGRAM_USER = "LuisAlGomez";
 
-    // Array with all the provided image filenames
-    const productImages = [
-        "0.jpeg", "1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg",
-        "5.jpeg", "6.jpeg", "7.jpeg", "8.jpg", "9.jpg",
-        "10.jpg", "11.jpg", "12.jpg"
+    // Array with all the products (image, name, and price)
+    const products = [
+        { imgSrc: "Guantes de spa para mascotas.jpeg", name: "Guantes de Spa para Mascotas", price: 0.00 },
+        { imgSrc: "bolsas para mascotas.jpeg", name: "Bolsas para Mascotas", price: 0.00 },
+        { imgSrc: "botella de agua portatil para mascotas.jpeg", name: "Botella de Agua Portátil para Mascotas", price: 0.00 },
+        { imgSrc: "collar para perro.jpeg", name: "Collar para Perro", price: 0.00 },
+        { imgSrc: "collar para perro.jpg", name: "Collar para Perro (Variante)", price: 0.00 },
+        { imgSrc: "collar para perros de colores.jpg", name: "Collar para Perros de Colores", price: 0.00 },
+        { imgSrc: "correa para perro de colores.jpg", name: "Correa para Perro de Colores", price: 0.00 },
+        { imgSrc: "correa para perro doco.jpg", name: "Correa para Perro Doco", price: 0.00 },
+        { imgSrc: "entrenador de mascotas.jpeg", name: "Entrenador de Mascotas", price: 0.00 },
+        { imgSrc: "pechera para perro doco vertex.jpg", name: "Pechera para Perro Doco Vertex", price: 0.00 },
+        { imgSrc: "pechera para perro.jpeg", name: "Pechera para Perro", price: 0.00 },
+        { imgSrc: "tapetes antiestres.jpeg", name: "Tapetes Antiestrés", price: 0.00 },
+        { imgSrc: "toallitas antibacterianas para mascotas.jpeg", name: "Toallitas Antibacterianas para Mascotas", price: 0.00 }
     ];
 
     const catalogGrid = document.getElementById('catalog-grid');
@@ -38,9 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentModalProduct = null;
 
     // Dynamically create product cards
-    productImages.forEach((imgSrc, index) => {
+    products.forEach((product, index) => {
         const productId = `prod-${index}`;
-        const productName = `Producto ${index + 1}`;
+        const productName = product.name;
+        const productPrice = product.price;
 
         // Create card container
         const card = document.createElement('div');
@@ -52,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Image element
         const img = document.createElement('img');
-        img.src = `assets/img/${imgSrc}`;
+        img.src = `assets/img/${product.imgSrc}`;
         img.alt = productName;
         img.className = 'product-img';
         img.loading = "lazy";
@@ -61,18 +72,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const infoDiv = document.createElement('div');
         infoDiv.className = 'card-info';
 
+        const topDiv = document.createElement('div');
+        topDiv.className = 'card-info-top';
+
         const title = document.createElement('h3');
         title.textContent = productName;
 
+        const priceEl = document.createElement('div');
+        priceEl.className = 'product-price';
+        priceEl.textContent = `$${productPrice.toFixed(2)}`;
+
+        topDiv.appendChild(title);
+        topDiv.appendChild(priceEl);
+
         const addBtn = document.createElement('button');
         addBtn.className = 'add-btn';
-        addBtn.textContent = 'Agregar';
+        addBtn.textContent = 'Agregar al Carrito';
         addBtn.onclick = (e) => {
             e.stopPropagation(); // Prevent opening modal
-            addToCart({ id: productId, name: productName, imgSrc: imgSrc });
+            addToCart({ id: productId, name: productName, imgSrc: product.imgSrc, price: productPrice });
         };
 
-        infoDiv.appendChild(title);
+        infoDiv.appendChild(topDiv);
         infoDiv.appendChild(addBtn);
 
         // Assemble card
@@ -85,15 +106,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Click event on image to open modal
         imgContainer.addEventListener('click', () => {
-            currentModalProduct = { id: productId, name: productName, imgSrc: imgSrc };
-            openModal(imgSrc, productName);
+            currentModalProduct = { id: productId, name: productName, imgSrc: product.imgSrc, price: productPrice };
+            openModal(product.imgSrc, productName, productPrice);
         });
     });
 
     // Modal Functions
-    function openModal(imgSrc, title) {
+    function openModal(imgSrc, title, price) {
         modalImg.src = `assets/img/${imgSrc}`;
-        modalCaption.textContent = title;
+        modalCaption.textContent = `${title} - $${price.toFixed(2)}`;
         modal.classList.add('show');
         document.body.style.overflow = 'hidden';
     }
@@ -155,8 +176,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateCartUI() {
         // Update counts
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
         cartCount.textContent = totalItems;
         cartTotalCount.textContent = totalItems;
+
+        const cartTotalPrice = document.getElementById('cart-total-price');
+        if (cartTotalPrice) {
+            cartTotalPrice.textContent = `$${totalPrice.toFixed(2)}`;
+        }
 
         // Enable/disable checkout
         checkoutBtn.disabled = cart.length === 0;
@@ -175,13 +203,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img src="assets/img/${item.imgSrc}" alt="${item.name}" class="cart-item-img">
                 <div class="cart-item-info">
                     <h4>${item.name}</h4>
+                    <p class="cart-item-price">$${item.price.toFixed(2)} c/u</p>
                     <div class="quantity-controls">
                         <button class="qty-btn" onclick="document.dispatchEvent(new CustomEvent('updateQty', {detail: {id: '${item.id}', d: -1}}))">-</button>
                         <span>${item.quantity}</span>
                         <button class="qty-btn" onclick="document.dispatchEvent(new CustomEvent('updateQty', {detail: {id: '${item.id}', d: 1}}))">+</button>
                     </div>
                 </div>
-                <button class="cart-item-remove" onclick="document.dispatchEvent(new CustomEvent('removeCartItem', {detail: '${item.id}'}))">Quitar</button>
+                <div class="cart-item-right" style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+                    <p class="cart-item-subtotal" style="font-weight:bold; color:var(--primary-color);">$${(item.price * item.quantity).toFixed(2)}</p>
+                    <button class="cart-item-remove" style="margin-left:0;" onclick="document.dispatchEvent(new CustomEvent('removeCartItem', {detail: '${item.id}'}))">Quitar</button>
+                </div>
             `;
             cartItemsContainer.appendChild(itemElement);
         });
@@ -228,11 +260,13 @@ document.addEventListener('DOMContentLoaded', () => {
         message += "Estoy interesado en comprar los siguientes productos del catálogo de Dragon Trader:\n\n";
 
         cart.forEach(item => {
-            message += `- ${item.quantity}x ${item.name}\n`;
+            message += `- ${item.quantity}x ${item.name} ($${item.price.toFixed(2)} c/u) - Subtotal: $${(item.price * item.quantity).toFixed(2)}\n`;
         });
 
+        const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         message += `\nTotal de unidades: ${cartCount.textContent}\n`;
-        message += "¿Podrían indicarme el precio total y los métodos de pago/envío disponibles?";
+        message += `Precio Total Estimado: $${totalPrice.toFixed(2)}\n\n`;
+        message += "¿Podrían confirmarme la disponibilidad, los métodos de pago y el envío?";
 
         const encodedMessage = encodeURIComponent(message);
 

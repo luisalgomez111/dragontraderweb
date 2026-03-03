@@ -214,8 +214,23 @@ nav a.active {
 
 .card-info {
     display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-info-top {
+    display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    width: 100%;
+    gap: 10px;
+}
+
+.product-price {
+    font-weight: 800;
+    color: #10b981;
+    font-size: 1.1rem;
+    white-space: nowrap;
 }
 
 .card-info h3 {
@@ -230,7 +245,7 @@ nav a.active {
 .add-btn {
     background: #f3f4f6;
     border: 1px solid var(--border-color);
-    padding: 8px 12px;
+    padding: 10px 12px;
     border-radius: 2px;
     cursor: pointer;
     transition: all 0.2s;
@@ -238,6 +253,7 @@ nav a.active {
     text-transform: uppercase;
     font-weight: 600;
     font-family: var(--font-main);
+    width: 100%;
 }
 
 .add-btn:hover {
@@ -455,7 +471,13 @@ footer p {
 .cart-item-info h4 {
     font-size: 0.9rem;
     text-transform: uppercase;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
+}
+
+.cart-item-price {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
 }
 
 .quantity-controls {
