@@ -92,7 +92,7 @@ nav a.active {
     color: var(--text-muted);
 }
 
-/* Hero */
+/* Hero Premium */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -100,55 +100,133 @@ nav a.active {
     justify-content: center;
     text-align: center;
     padding-top: 80px;
+    background-image: url('assets/img/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Efecto Parallax */
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: 1;
 }
 
 .hero-content {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
-    max-width: 800px;
+    max-width: 900px;
+}
+
+.hero-glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 60px 40px;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .hero h2 {
-    font-size: 4.5rem;
+    font-size: 5rem;
     font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -1px;
+    line-height: 1;
+    letter-spacing: -2px;
     text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.hero .highlight {
+    background: linear-gradient(to right, #facc15, #eab308);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    color: var(--text-muted);
-    max-width: 600px;
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 700px;
+    margin: 0 auto 40px;
+    font-weight: 300;
 }
 
+/* Botón Premium */
 .btn-primary {
     display: inline-block;
-    background: var(--primary-color);
-    color: #fff;
-    padding: 18px 45px;
+    background: #fff;
+    color: #000;
+    padding: 20px 50px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
-    transition: background 0.3s, transform 0.3s;
-    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-radius: 50px;
     border: none;
     cursor: pointer;
     font-family: var(--font-main);
+    box-shadow: 0 0 0 rgba(250, 204, 21, 0);
 }
 
 .btn-primary:hover {
-    background: #333;
+    background: #facc15;
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(234, 179, 8, 0.4);
+}
+
+.btn-primary:active {
     transform: translateY(-2px);
 }
 
 .btn-primary:disabled {
-    background: #ccc;
+    background: #444;
+    color: #888;
     cursor: not-allowed;
     transform: none;
+    box-shadow: none;
+}
+
+/* Animaciones */
+@keyframes revealUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-reveal {
+    animation: revealUp 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.animate-text-1 {
+    opacity: 0;
+    animation: revealUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.3s forwards;
+}
+
+.animate-text-2 {
+    opacity: 0;
+    animation: revealUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s forwards;
+}
+
+.animate-button {
+    opacity: 0;
+    animation: revealUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.7s forwards;
 }
 
 /* Catalog */
