@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Config: Tu enlace directo de WhatsApp
     const WHATSAPP_LINK = "https://wa.me/qr/EAQCS6O2STTOD1"; // Enlace QR proporcionado
 
+    // Config: Telegram Bot (Reemplaza con tus credenciales de Telegram)
+    const TELEGRAM_BOT_TOKEN = "8796470455:AAERiu88kfYyEGZP4OLyIq_nWF5G-Vbwgk4"; // EJEMPLO: 7123456789:AAGY...
+    const TELEGRAM_CHAT_ID = "8796470455";     // EJEMPLO: 1029384756
+
     // Array with all the products (image, name, and price)
     const products = [
         { imgSrc: "Guantes de spa para mascotas.jpeg", name: "Guantes de Spa para Mascotas", price: 0.00 },
@@ -241,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cartOverlay.addEventListener('click', closeCartSidebar);
 
     // --- Telegram Checkout ---
-    checkoutForm.addEventListener('submit', (e) => {
+    checkoutForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (cart.length === 0) return;
 
@@ -254,26 +258,73 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        let message = `Hola, soy ${name}.\n`;
-        message += `Mi teléfono es: ${phone}\n`;
-        message += `Mi correo es: ${email}\n\n`;
-        message += "Estoy interesado en comprar los siguientes productos del catálogo de Dragon Trader:\n\n";
+        // Construir mensaje amigable en formato Markdown para Telegram
+        let messageText = `🆕 *NUEVO PEDIDO DE DRAGON TRADER*\n\n`;
+        messageText += `👤 *Cliente:* ${name}\n`;
+        messageText += `📞 *Teléfono:* ${phone}\n`;
+        messageText += `📧 *Email:* ${email}\n\n`;
+        messageText += `🛒 *Productos:*\n`;
 
         cart.forEach(item => {
-            message += `- ${item.quantity}x ${item.name} ($${item.price.toFixed(2)} c/u) - Subtotal: $${(item.price * item.quantity).toFixed(2)}\n`;
+            messageText += `- ${item.quantity}x ${item.name} ($${item.price.toFixed(2)} c/u) = $${(item.price * item.quantity).toFixed(2)}\n`;
         });
 
         const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        message += `\nTotal de unidades: ${cartCount.textContent}\n`;
-        message += `Precio Total Estimado: $${totalPrice.toFixed(2)}\n\n`;
-        message += "¿Podrían confirmarme la disponibilidad, los métodos de pago y el envío?";
+        messageText += `\n📦 *Unidades Totales:* ${cartCount.textContent}\n`;
+        messageText += `💰 *Precio Total:* $${totalPrice.toFixed(2)}\n`;
 
-        const encodedMessage = encodeURIComponent(message);
+        // Si el usuario no ha configurado el Bot aún, usar WhatsApp de respaldo
+        if (TELEGRAM_BOT_TOKEN === "TU_BOT_TOKEN_AQUI" || TELEGRAM_CHAT_ID === "TU_CHAT_ID_AQUI") {
+            // Revertimos automáticamente a WhatsApp si no hemos cambiado las constantes
+            alert("⚠️ El Bot de Telegram aún no está configurado.\n\nSerás redirigido a enviar el pedido manualmente por WhatsApp por ahora.");
+            let wpMessage = `Hola, soy ${name}.\nMi teléfono es: ${phone}\nMi correo es: ${email}\n\nEstoy interesado en comprar:\n\n`;
+            cart.forEach(item => {
+                wpMessage += `- ${item.quantity}x ${item.name} ($${item.price.toFixed(2)} c/u)\n`;
+            });
+            wpMessage += `\nTotal estimado: $${totalPrice.toFixed(2)}`;
+            const whatsappUrl = `${WHATSAPP_LINK}?text=${encodeURIComponent(wpMessage)}`;
+            window.open(whatsappUrl, '_blank');
+            return;
+        }
 
-        // Append message to the QR link
-        const whatsappUrl = `${WHATSAPP_LINK}?text=${encodedMessage}`;
+        // Cambiar estado del botón
+        const originalBtnText = checkoutBtn.textContent;
+        checkoutBtn.textContent = 'Enviando Pedido...';
+        checkoutBtn.disabled = true;
 
-        window.open(whatsappUrl, '_blank');
+        try {
+            // Petición HTTP a la API de Telegram (invisible para el cliente)
+            const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: messageText,
+                    parse_mode: 'Markdown'
+                })
+            });
+
+            if (response.ok) {
+                // Éxito: limpiar carrito y notificar cliente
+                alert('✅ ¡Pedido enviado con éxito! Nos pondremos en contacto contigo muy pronto para confirmar disponibilidad y pago.');
+                cart = [];
+                updateCartUI();
+                closeCartSidebar();
+            } else {
+                throw new Error('Error al conectar con la API de Telegram');
+            }
+        } catch (error) {
+            // Si la conexión a Telegram falla por alguna razón (ej. no hay internet), intentar llevar a WhatsApp
+            console.error('Error enviando a Telegram:', error);
+            alert('❌ Hubo un error al enviar tu pedido por el sistema interno. Te redirigiremos a WhatsApp.');
+            let wpMessage = `Hola, intenté hacer el pedido automáticamente pero hubo un error. Soy ${name}. Quería pedir mercancía por $${totalPrice.toFixed(2)}`;
+            const whatsappUrl = `${WHATSAPP_LINK}?text=${encodeURIComponent(wpMessage)}`;
+            window.open(whatsappUrl, '_blank');
+        } finally {
+            // Restaurar botón al final
+            checkoutBtn.textContent = originalBtnText;
+            checkoutBtn.disabled = false;
+        }
     });
 
     // Active nav
