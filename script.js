@@ -1,15 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Config: Telegram Bot (Credenciales activas)
+    // CONFIGURACIÓN: Credenciales para el Bot de Telegram que recibe los pedidos
     const TELEGRAM_BOT_TOKEN = "8796470455:AAERiu88kfYyEGZP4OLyIq_nWF5G-Vbwgk4";
     const TELEGRAM_CHAT_ID = "-5228386743";
 
-    // Array with all the products (image, name, and price)
+    // BASE DE DATOS DE PRODUCTOS: Lista de imágenes, nombres y precios (actualmente en 0.00)
     const products = [
         { imgSrc: "Guantes de spa para mascotas.jpeg", name: "Guantes de Spa para Mascotas", price: 0.00 },
         { imgSrc: "bolsas para mascotas.jpeg", name: "Bolsas para Mascotas", price: 0.00 },
         { imgSrc: "botella de agua portatil para mascotas.jpeg", name: "Botella de Agua Portátil para Mascotas", price: 0.00 },
-        { imgSrc: "collar para perro.jpeg", name: "Collar para Perro", price: 0.00 },
         { imgSrc: "collar para perro.jpg", name: "Collar para Perro (Variante)", price: 0.00 },
         { imgSrc: "collar para perros de colores.jpg", name: "Collar para Perros de Colores", price: 0.00 },
         { imgSrc: "correa para perro de colores.jpg", name: "Correa para Perro de Colores", price: 0.00 },
@@ -21,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { imgSrc: "toallitas antibacterianas para mascotas.jpeg", name: "Toallitas Antibacterianas para Mascotas", price: 0.00 }
     ];
 
+    // REFERENCIAS AL DOM: Captura de elementos para interactuar con HTML
     const catalogGrid = document.getElementById('catalog-grid');
     const modal = document.getElementById('image-modal');
     const modalImg = document.getElementById('modal-img');
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalAddCartBtn = document.getElementById('modal-add-cart');
     const closeBtn = document.querySelector('.close-btn');
 
-    // Cart Elements
+    // Elementos del Carrito
     const cartBtn = document.getElementById('cart-btn');
     const cartSidebar = document.getElementById('cart-sidebar');
     const closeCart = document.querySelector('.close-cart');
@@ -39,38 +39,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkoutForm = document.getElementById('checkout-form');
     const checkoutBtn = document.getElementById('checkout-btn');
 
-    // Customer Inputs
+    // Entradas de Datos del Cliente
     const custName = document.getElementById('cust-name');
     const custPhone = document.getElementById('cust-phone');
     const custEmail = document.getElementById('cust-email');
     const custAddress = document.getElementById('cust-address');
 
-    // Cart State
-    let cart = [];
-    let currentModalProduct = null;
+    // ESTADO DE LA APLICACIÓN: Datos volátiles que cambian durante la sesión
+    let cart = []; // Almacena los productos añadidos
+    let currentModalProduct = null; // Producto seleccionado para el modal
 
-    // Dynamically create product cards
+    // RENDERIZADO DINÁMICO: Crea las tarjetas de productos a partir del array 'products'
     products.forEach((product, index) => {
         const productId = `prod-${index}`;
         const productName = product.name;
         const productPrice = product.price;
 
-        // Create card container
+        // Crear contenedor de la tarjeta
         const card = document.createElement('div');
         card.className = 'product-card';
 
-        // Card Image Container
+        // Contenedor de imagen
         const imgContainer = document.createElement('div');
         imgContainer.className = 'card-img-container';
 
-        // Image element
+        // Elemento imagen con carga diferida (lazy loading)
         const img = document.createElement('img');
         img.src = `assets/img/${product.imgSrc}`;
         img.alt = productName;
         img.className = 'product-img';
         img.loading = "lazy";
 
-        // Product Info and Add button
+        // Div de información y botón de añadir
         const infoDiv = document.createElement('div');
         infoDiv.className = 'card-info';
 
@@ -91,42 +91,38 @@ document.addEventListener('DOMContentLoaded', () => {
         addBtn.className = 'add-btn';
         addBtn.textContent = 'Agregar al Carrito';
         addBtn.onclick = (e) => {
-            e.stopPropagation(); // Prevent opening modal
+            e.stopPropagation(); // Evita abrir el modal al pulsar el botón
             addToCart({ id: productId, name: productName, imgSrc: product.imgSrc, price: productPrice });
         };
 
         infoDiv.appendChild(topDiv);
         infoDiv.appendChild(addBtn);
 
-        // Assemble card
+        // Ensamblar tarjeta y añadir al grid
         imgContainer.appendChild(img);
         card.appendChild(imgContainer);
         card.appendChild(infoDiv);
-
-        // Add to grid
         catalogGrid.appendChild(card);
 
-        // Click event on image to open modal
+        // Evento para abrir el modal al hacer clic en la imagen
         imgContainer.addEventListener('click', () => {
             currentModalProduct = { id: productId, name: productName, imgSrc: product.imgSrc, price: productPrice };
             openModal(product.imgSrc, productName, productPrice);
         });
     });
 
-    // Modal Functions
+    // FUNCIONES DEL MODAL: Para visualizar productos en detalle
     function openModal(imgSrc, title, price) {
         modalImg.src = `assets/img/${imgSrc}`;
         modalCaption.textContent = `${title} - $${price.toFixed(2)}`;
         modal.classList.add('show');
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden'; // Bloquea el scroll del fondo
     }
 
     function closeModal() {
         modal.classList.remove('show');
-        setTimeout(() => {
-            modalImg.src = '';
-        }, 300);
-        document.body.style.overflow = 'auto';
+        setTimeout(() => { modalImg.src = ''; }, 300); // Limpia la imagen tras la animación
+        document.body.style.overflow = 'auto'; // Restaura el scroll
     }
 
     modalAddCartBtn.addEventListener('click', () => {
@@ -135,15 +131,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
     });
 
-    // --- Cart Functions ---
+    // --- LÓGICA DEL CARRITO ---
 
+    // Añade un producto al estado 'cart' y actualiza la UI
     function addToCart(product) {
         const existingItem = cart.find(item => item.id === product.id);
         if (existingItem) {
@@ -153,16 +148,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         updateCartUI();
 
-        // Small animation on cart button
+        // Pequeña animación de salto en el botón flotante
         cartBtn.style.transform = 'scale(1.2)';
         setTimeout(() => { cartBtn.style.transform = 'scale(1)'; }, 200);
     }
 
+    // Elimina un producto completamente del carrito
     function removeFromCart(productId) {
         cart = cart.filter(item => item.id !== productId);
         updateCartUI();
     }
 
+    // Ajusta la cantidad de un item (+1 o -1)
     function updateQuantity(productId, delta) {
         const item = cart.find(i => i.id === productId);
         if (item) {
@@ -175,8 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Sincroniza el estado del carrito con el HTML visible
     function updateCartUI() {
-        // Update counts
+        // Cálculo de totales
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
         const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
@@ -188,10 +186,10 @@ document.addEventListener('DOMContentLoaded', () => {
             cartTotalPrice.textContent = `$${totalPrice.toFixed(2)}`;
         }
 
-        // Enable/disable checkout
+        // Bloquea el botón de envío si el carrito está vacío
         checkoutBtn.disabled = cart.length === 0;
 
-        // Render items
+        // Renderizado de items en el sidebar
         cartItemsContainer.innerHTML = '';
         if (cart.length === 0) {
             cartItemsContainer.innerHTML = '<p class="empty-cart-msg">Tu carrito está vacío.</p>';
@@ -221,11 +219,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Global listeners for inline onclick events in dynamic HTML
+    // Manejadores de eventos para los botones dinámicos del carrito
     document.addEventListener('updateQty', (e) => updateQuantity(e.detail.id, e.detail.d));
     document.addEventListener('removeCartItem', (e) => removeFromCart(e.detail));
 
-    // Cart UI Toggles
+    // Funciones para abrir y cerrar el sidebar del carrito
     function openCart() {
         cartSidebar.classList.add('open');
         cartOverlay.classList.add('show');
@@ -242,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeCart.addEventListener('click', closeCartSidebar);
     cartOverlay.addEventListener('click', closeCartSidebar);
 
-    // --- Telegram Checkout ---
+    // --- INTEGRACIÓN CON TELEGRAM (CHECKOUT) ---
     checkoutForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (cart.length === 0) return;
@@ -256,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Construir mensaje amigable en formato Markdown para Telegram
+        // CONSTRUCCIÓN DEL MENSAJE: Formateo amigable para el dueño de la tienda
         let messageText = `*NUEVO PEDIDO DE DRAGON TRADER*\n\n`;
         messageText += `*Cliente:* ${name}\n`;
         messageText += `*Teléfono:* ${phone}\n`;
@@ -272,13 +270,13 @@ document.addEventListener('DOMContentLoaded', () => {
         messageText += `\n*Unidades Totales:* ${cartCount.textContent}\n`;
         messageText += `*Precio Total:* $${totalPrice.toFixed(2)}\n`;
 
-        // Cambiar estado del botón
+        // Feedback visual en el botón durante el envío
         const originalBtnText = checkoutBtn.textContent;
         checkoutBtn.textContent = 'Enviando Pedido...';
         checkoutBtn.disabled = true;
 
         try {
-            // Petición HTTP a la API de Telegram (invisible para el cliente)
+            // Envío real a la API de Telegram
             const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -290,7 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                // Éxito: limpiar carrito y notificar cliente
                 alert('✅ ¡Pedido enviado con éxito! Nos pondremos en contacto contigo muy pronto para confirmar disponibilidad y pago.');
                 cart = [];
                 updateCartUI();
@@ -302,13 +299,13 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error enviando a Telegram:', error);
             alert('❌ Hubo un error al procesar tu pedido. Por favor, intenta de nuevo más tarde o verifica tu conexión.');
         } finally {
-            // Restaurar botón al final
             checkoutBtn.textContent = originalBtnText;
             checkoutBtn.disabled = false;
         }
     });
 
-    // --- Dynamic Text Animation (Typewriter) ---
+    // --- ANIMACIÓN DE TEXTO DINÁMICO (TYPEWRITER) ---
+    // Simula una máquina de escribir cambiando frases en la portada.
     const dynamicText = document.getElementById('dynamic-text');
     const words = [
         "China - Venezuela",
@@ -335,9 +332,10 @@ document.addEventListener('DOMContentLoaded', () => {
             typeSpeed = 100;
         }
 
+        // Lógica de transición entre escribir y borrar
         if (!isDeleting && charIndex === currentWord.length) {
             isDeleting = true;
-            typeSpeed = 2000; // Pausa al final de la palabra
+            typeSpeed = 2000; // Espera en la palabra completa
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             wordIndex = (wordIndex + 1) % words.length;
@@ -347,10 +345,9 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(type, typeSpeed);
     }
 
-    // Iniciar animación después de un pequeño retraso
-    setTimeout(type, 1500);
+    setTimeout(type, 1500); // Inicia tras la carga de la página
 
-    // Active nav
+    // SEGUIMIENTO DE SCROLL: Resalta la sección activa en el menú de navegación
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('nav ul li a');
     window.addEventListener('scroll', () => {

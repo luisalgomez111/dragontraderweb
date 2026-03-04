@@ -2,20 +2,30 @@
 <html lang="es">
 
 <head>
+    <!-- Configuración básica de metadatos y visualización -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dragon Trader - Catálogo Digital | Importaciones China-Venezuela</title>
+
+    <!-- Meta descripción para SEO y previsualización en redes sociales -->
     <meta name="description"
         content="Catálogo digital de Dragon Trader. Descubre nuestra selección de mercancía importada directamente desde China a Venezuela. Calidad y buenos precios.">
+
+    <!-- Fuentes de Google: Outfit para un look moderno y premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Iconos profesionales de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Hoja de estilos principal del proyecto -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <!-- Encabezado Principal: Menú de navegación fijo -->
     <header class="main-header">
         <div class="container header-content">
             <div class="logo">
@@ -31,18 +41,23 @@
     </header>
 
     <main>
+        <!-- Sección Hero: Introducción con animaciones y efectos visuales -->
         <section id="inicio" class="hero">
             <div class="hero-overlay"></div>
             <div class="container hero-content">
                 <div class="hero-glass-card animate-reveal">
+                    <!-- Texto dinámico que cambia vía JavaScript -->
                     <h2 class="animate-text-1">Importación Directa <br> <span class="highlight-wrapper"><span
                                 id="dynamic-text" class="highlight">China - Venezuela</span></span></h2>
                     <p class="animate-text-2">Descubre nuestra selección exclusiva de productos con la mejor relación
                         calidad-precio. Traemos lo
                         que necesitas directamente a tus manos.</p>
+
+                    <!-- Animación decorativa de avión circulando -->
                     <div class="plane-animation">
                         <i class="fa-solid fa-plane"></i>
                     </div>
+
                     <div class="animate-button">
                         <a href="#catalogo" class="btn-primary">Explorar Catálogo</a>
                     </div>
@@ -50,6 +65,7 @@
             </div>
         </section>
 
+        <!-- Sección de Catálogo: Aquí se muestran los productos dinámicos -->
         <section id="catalogo" class="catalog-section">
             <div class="container">
                 <div class="section-heading">
@@ -57,20 +73,23 @@
                     <p>Explora la mercancía disponible. Haz clic en cualquier producto para ampliar la imagen.</p>
                 </div>
 
+                <!-- Contenedor donde JS insertará las tarjetas de productos -->
                 <div id="catalog-grid" class="catalog-grid">
-                    <!-- Cards will be dynamically inserted here by JS -->
+                    <!-- Las tarjetas se generan dinámicamente mediante script.js -->
                 </div>
             </div>
         </section>
 
-        <!-- Shopping Cart Floating Button -->
+        <!-- Botón Flotante del Carrito de Compras -->
         <div id="cart-btn" class="cart-btn">
             <span class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></span>
             <span id="cart-count" class="cart-count">0</span>
         </div>
     </main>
 
+    <!-- Pie de Página: Información de confianza y marca -->
     <footer>
+        <!-- Distintivos de confianza para el cliente -->
         <div class="container footer-trust-badges">
             <div class="trust-badge">
                 <span class="badge-icon"><i class="fa-solid fa-shield-halved"></i></span>
@@ -94,6 +113,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Información de derechos y misión -->
         <div class="container footer-content">
             <div class="footer-logo">
                 <h2>Dragon Trader</h2>
@@ -106,7 +127,7 @@
         </div>
     </footer>
 
-    <!-- Image Modal (Lightbox) -->
+    <!-- Modal para Ampliar Imagen (Lightbox): Vista detallada del producto -->
     <div id="image-modal" class="modal">
         <span class="close-btn">&times;</span>
         <div class="modal-content">
@@ -116,16 +137,19 @@
         </div>
     </div>
 
-    <!-- Shopping Cart Sidebar -->
+    <!-- Barra Lateral del Carrito de Compras (Sidebar) -->
     <div id="cart-sidebar" class="cart-sidebar">
         <div class="cart-header">
             <h2>Tu Carrito</h2>
             <span class="close-cart">&times;</span>
         </div>
+
+        <!-- Contenedor dinámico de items en el carrito -->
         <div id="cart-items" class="cart-items">
-            <!-- Cart items will be dynamically inserted here -->
             <p class="empty-cart-msg">Tu carrito está vacío.</p>
         </div>
+
+        <!-- Resumen de costos y formulario de pedido -->
         <div class="cart-footer">
             <div class="cart-total">
                 <div style="display: flex; flex-direction: column; gap: 5px; width: 100%;">
@@ -141,6 +165,7 @@
                 </div>
             </div>
 
+            <!-- Formulario para recopilar datos del comprador y enviar por Telegram -->
             <form id="checkout-form" class="checkout-form">
                 <input type="text" id="cust-name" placeholder="Nombre y Apellido" required>
                 <input type="tel" id="cust-phone" placeholder="Teléfono" required>
@@ -152,8 +177,11 @@
             </form>
         </div>
     </div>
+
+    <!-- Oscurecimiento de fondo cuando el carrito está abierto -->
     <div id="cart-overlay" class="cart-overlay"></div>
 
+    <!-- Lógica principal del catálogo y el carrito -->
     <script src="script.js"></script>
 </body>
 

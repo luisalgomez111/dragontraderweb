@@ -1,3 +1,7 @@
+/* 
+    SISTEMA DE DISEÑO Y VARIABLES 
+    Define los colores base, tipografía y espaciados estándar para mantener consistencia en todo el sitio.
+*/
 :root {
     --bg-color: #ffffff;
     --text-color: #111111;
@@ -7,6 +11,7 @@
     --font-main: 'Outfit', sans-serif;
 }
 
+/* RESET GLOBAL: Elimina márgenes por defecto y asegura que el tamaño de los elementos incluya el padding/borde. */
 * {
     margin: 0;
     padding: 0;
@@ -35,7 +40,10 @@ body {
     color: var(--primary-color);
 }
 
-/* Header */
+/* 
+   HEADER (Encabezado) 
+   Contiene el logo y la navegación. Se mantiene fijo en la parte superior.
+*/
 .main-header {
     position: fixed;
     top: 0;
@@ -92,7 +100,10 @@ nav a.active {
     color: var(--text-muted);
 }
 
-/* Hero Premium */
+/* 
+   HERO SECTION (Portada) 
+   Diseño de alto impacto con fondo oscuro y red de logística animada.
+*/
 .hero {
     min-height: 100vh;
     display: flex;
@@ -105,7 +116,7 @@ nav a.active {
     overflow: hidden;
 }
 
-/* Red de Logística Animada */
+/* Red de Logística: Efecto visual de puntos en movimiento en el fondo */
 .hero::before {
     content: '';
     position: absolute;
@@ -127,7 +138,7 @@ nav a.active {
     }
 }
 
-/* Animación del Avión */
+/* Animación del Avión: Un avión que cruza la pantalla periódicamente para dar dinamismo */
 .plane-animation {
     position: absolute;
     top: 20%;
@@ -305,7 +316,10 @@ nav a.active {
     animation: revealUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.7s forwards;
 }
 
-/* Catalog */
+/* 
+   CATALOG SECTION (Cuadrícula de productos) 
+   Organiza los productos en una rejilla responsiva que se ajusta según el tamaño de pantalla.
+*/
 .catalog-section {
     padding: 100px 0;
 }
@@ -416,7 +430,10 @@ nav a.active {
     border-color: var(--primary-color);
 }
 
-/* Footer Moderno y de Confianza */
+/* 
+   FOOTER (Pie de página) 
+   Sección con fondo oscuro que incluye distintivos de confianza y misión de la marca.
+*/
 footer {
     padding: 60px 0 30px;
     background: #000;
@@ -487,7 +504,10 @@ footer {
     margin-top: 10px;
 }
 
-/* Modal Lightbox */
+/* 
+   MODAL LIGHTBOX (Vista ampliada) 
+   Despliegue de imagen detallada con fondo translúcido y controles de cierre.
+*/
 .modal {
     display: none;
     position: fixed;
@@ -552,7 +572,11 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Shopping Cart UI */
+/* 
+   CARRITO DE COMPRAS (UI Sidebar) 
+   Botón flotante, barra lateral deslizante y lista de productos seleccionados.
+*/
+/* Botón flotante del carrito */
 .cart-btn {
     position: fixed;
     bottom: 30px;
@@ -769,6 +793,10 @@ footer {
     pointer-events: auto;
 }
 
+/* 
+   DISEÑO RESPONSIVO (Móvil y Tablets) 
+   Ajustes de tamaño y visualización para asegurar la experiencia en dispositivos pequeños.
+*/
 @media (max-width: 768px) {
     .main-header {
         padding: 15px 0;
