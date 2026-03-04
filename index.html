@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -61,7 +62,7 @@
 
         <!-- Shopping Cart Floating Button -->
         <div id="cart-btn" class="cart-btn">
-            <span class="cart-icon">🛒</span>
+            <span class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></span>
             <span id="cart-count" class="cart-count">0</span>
         </div>
     </main>
@@ -69,21 +70,21 @@
     <footer>
         <div class="container footer-trust-badges">
             <div class="trust-badge">
-                <span class="badge-icon">🛡️</span>
+                <span class="badge-icon"><i class="fa-solid fa-shield-halved"></i></span>
                 <div class="badge-text">
                     <h4>Compras Seguras</h4>
                     <p>Pedidos protegidos y verificados.</p>
                 </div>
             </div>
             <div class="trust-badge">
-                <span class="badge-icon">🚚</span>
+                <span class="badge-icon"><i class="fa-solid fa-truck-fast"></i></span>
                 <div class="badge-text">
                     <h4>Envíos a Venezuela</h4>
                     <p>Logística nacional garantizada.</p>
                 </div>
             </div>
             <div class="trust-badge">
-                <span class="badge-icon">⭐</span>
+                <span class="badge-icon"><i class="fa-solid fa-star"></i></span>
                 <div class="badge-text">
                     <h4>Calidad Certificada</h4>
                     <p>Productos de alta gama.</p>
@@ -140,7 +141,8 @@
                 <input type="tel" id="cust-phone" placeholder="Teléfono" required>
                 <input type="email" id="cust-email" placeholder="Correo Electrónico" required>
                 <textarea id="cust-address" placeholder="Dirección de Envío Completa" required></textarea>
-                <p class="shipping-notice">📍 Solo realizamos envíos a Venezuela.</p>
+                <p class="shipping-notice"><i class="fa-solid fa-location-dot"></i> Solo realizamos envíos a Venezuela.
+                </p>
                 <button type="submit" id="checkout-btn" class="btn-primary checkout-btn" disabled>Hacer Pedido</button>
             </form>
         </div>

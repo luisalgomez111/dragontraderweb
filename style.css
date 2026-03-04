@@ -387,8 +387,10 @@ footer {
 }
 
 .badge-icon {
-    font-size: 2rem;
-    filter: drop-shadow(0 0 5px rgba(250, 204, 21, 0.3));
+    font-size: 1.8rem;
+    color: #facc15;
+    width: 40px;
+    text-align: center;
 }
 
 .badge-text h4 {
@@ -744,6 +746,11 @@ footer {
     border-color: var(--text-color);
 }
 
+.shipping-notice i {
+    margin-right: 8px;
+    color: #10b981;
+}
+
 .shipping-notice {
     font-size: 0.8rem;
     color: var(--text-muted);
@@ -753,4 +760,6 @@ footer {
     border-left: 3px solid #10b981;
     margin: 5px 0;
     font-weight: 500;
+    display: flex;
+    align-items: center;
 }

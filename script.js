@@ -257,20 +257,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Construir mensaje amigable en formato Markdown para Telegram
-        let messageText = `🆕 *NUEVO PEDIDO DE DRAGON TRADER*\n\n`;
-        messageText += `👤 *Cliente:* ${name}\n`;
-        messageText += `📞 *Teléfono:* ${phone}\n`;
-        messageText += `📧 *Email:* ${email}\n`;
-        messageText += `📍 *Dirección:* ${custAddress.value.trim()}\n\n`;
-        messageText += `🛒 *Productos:*\n`;
+        let messageText = `*NUEVO PEDIDO DE DRAGON TRADER*\n\n`;
+        messageText += `*Cliente:* ${name}\n`;
+        messageText += `*Teléfono:* ${phone}\n`;
+        messageText += `*Email:* ${email}\n`;
+        messageText += `*Dirección:* ${custAddress.value.trim()}\n\n`;
+        messageText += `*Productos:*\n`;
 
         cart.forEach(item => {
             messageText += `- ${item.quantity}x ${item.name} ($${item.price.toFixed(2)} c/u) = $${(item.price * item.quantity).toFixed(2)}\n`;
         });
 
         const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        messageText += `\n📦 *Unidades Totales:* ${cartCount.textContent}\n`;
-        messageText += `💰 *Precio Total:* $${totalPrice.toFixed(2)}\n`;
+        messageText += `\n*Unidades Totales:* ${cartCount.textContent}\n`;
+        messageText += `*Precio Total:* $${totalPrice.toFixed(2)}\n`;
 
         // Cambiar estado del botón
         const originalBtnText = checkoutBtn.textContent;
