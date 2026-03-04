@@ -308,6 +308,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- Dynamic Text Animation (Typewriter) ---
+    const dynamicText = document.getElementById('dynamic-text');
+    const words = [
+        "China - Venezuela",
+        "Seguridad Total",
+        "Confianza Plena",
+        "Calidad Garantizada",
+        "Envíos Seguros"
+    ];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100;
+
+    function type() {
+        const currentWord = words[wordIndex];
+
+        if (isDeleting) {
+            dynamicText.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+            typeSpeed = 50;
+        } else {
+            dynamicText.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+            typeSpeed = 100;
+        }
+
+        if (!isDeleting && charIndex === currentWord.length) {
+            isDeleting = true;
+            typeSpeed = 2000; // Pausa al final de la palabra
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            typeSpeed = 500;
+        }
+
+        setTimeout(type, typeSpeed);
+    }
+
+    // Iniciar animación después de un pequeño retraso
+    setTimeout(type, 1500);
+
     // Active nav
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('nav ul li a');
