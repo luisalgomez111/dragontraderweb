@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Config: Telegram Bot (Credenciales activas)
     const TELEGRAM_BOT_TOKEN = "8796470455:AAERiu88kfYyEGZP4OLyIq_nWF5G-Vbwgk4";
-    const TELEGRAM_CHAT_ID = "914539890";
+    const TELEGRAM_CHAT_ID = "-5228386743";
 
     // Array with all the products (image, name, and price)
     const products = [
