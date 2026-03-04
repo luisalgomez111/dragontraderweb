@@ -1,11 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Config: Tu enlace directo de WhatsApp
-    const WHATSAPP_LINK = "https://wa.me/qr/EAQCS6O2STTOD1"; // Enlace QR proporcionado
-
-    // Config: Telegram Bot (Reemplaza con tus credenciales de Telegram)
-    const TELEGRAM_BOT_TOKEN = "8796470455:AAERiu88kfYyEGZP4OLyIq_nWF5G-Vbwgk4"; // EJEMPLO: 7123456789:AAGY...
-    const TELEGRAM_CHAT_ID = "8796470455";     // EJEMPLO: 1029384756
+    // Config: Telegram Bot (Credenciales activas)
+    const TELEGRAM_BOT_TOKEN = "8796470455:AAERiu88kfYyEGZP4OLyIq_nWF5G-Vbwgk4";
+    const TELEGRAM_CHAT_ID = "8796470455";
 
     // Array with all the products (image, name, and price)
     const products = [
@@ -273,20 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
         messageText += `\n📦 *Unidades Totales:* ${cartCount.textContent}\n`;
         messageText += `💰 *Precio Total:* $${totalPrice.toFixed(2)}\n`;
 
-        // Si el usuario no ha configurado el Bot aún, usar WhatsApp de respaldo
-        if (TELEGRAM_BOT_TOKEN === "TU_BOT_TOKEN_AQUI" || TELEGRAM_CHAT_ID === "TU_CHAT_ID_AQUI") {
-            // Revertimos automáticamente a WhatsApp si no hemos cambiado las constantes
-            alert("⚠️ El Bot de Telegram aún no está configurado.\n\nSerás redirigido a enviar el pedido manualmente por WhatsApp por ahora.");
-            let wpMessage = `Hola, soy ${name}.\nMi teléfono es: ${phone}\nMi correo es: ${email}\n\nEstoy interesado en comprar:\n\n`;
-            cart.forEach(item => {
-                wpMessage += `- ${item.quantity}x ${item.name} ($${item.price.toFixed(2)} c/u)\n`;
-            });
-            wpMessage += `\nTotal estimado: $${totalPrice.toFixed(2)}`;
-            const whatsappUrl = `${WHATSAPP_LINK}?text=${encodeURIComponent(wpMessage)}`;
-            window.open(whatsappUrl, '_blank');
-            return;
-        }
-
         // Cambiar estado del botón
         const originalBtnText = checkoutBtn.textContent;
         checkoutBtn.textContent = 'Enviando Pedido...';
@@ -314,12 +297,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error('Error al conectar con la API de Telegram');
             }
         } catch (error) {
-            // Si la conexión a Telegram falla por alguna razón (ej. no hay internet), intentar llevar a WhatsApp
             console.error('Error enviando a Telegram:', error);
-            alert('❌ Hubo un error al enviar tu pedido por el sistema interno. Te redirigiremos a WhatsApp.');
-            let wpMessage = `Hola, intenté hacer el pedido automáticamente pero hubo un error. Soy ${name}. Quería pedir mercancía por $${totalPrice.toFixed(2)}`;
-            const whatsappUrl = `${WHATSAPP_LINK}?text=${encodeURIComponent(wpMessage)}`;
-            window.open(whatsappUrl, '_blank');
+            alert('❌ Hubo un error al procesar tu pedido. Por favor, intenta de nuevo más tarde o verifica tu conexión.');
         } finally {
             // Restaurar botón al final
             checkoutBtn.textContent = originalBtnText;
