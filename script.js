@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const custName = document.getElementById('cust-name');
     const custPhone = document.getElementById('cust-phone');
     const custEmail = document.getElementById('cust-email');
+    const custAddress = document.getElementById('cust-address');
 
     // Cart State
     let cart = [];
@@ -259,7 +260,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let messageText = `🆕 *NUEVO PEDIDO DE DRAGON TRADER*\n\n`;
         messageText += `👤 *Cliente:* ${name}\n`;
         messageText += `📞 *Teléfono:* ${phone}\n`;
-        messageText += `📧 *Email:* ${email}\n\n`;
+        messageText += `📧 *Email:* ${email}\n`;
+        messageText += `📍 *Dirección:* ${custAddress.value.trim()}\n\n`;
         messageText += `🛒 *Productos:*\n`;
 
         cart.forEach(item => {
