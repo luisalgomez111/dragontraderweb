@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // Config: Tu enlace directo de WhatsApp
-    const WHATSAPP_LINK = "https://wa.me/qr/6ESRR5SYM4R7L1"; // Enlace QR proporcionado
+    const WHATSAPP_LINK = "https://wa.me/qr/EAQCS6O2STTOD1"; // Enlace QR proporcionado
 
     // Array with all the products (image, name, and price)
     const products = [
