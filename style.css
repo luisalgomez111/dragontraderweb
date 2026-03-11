@@ -1157,6 +1157,7 @@ nav ul {
     padding: 2rem;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 .modal-header {
@@ -1190,6 +1191,8 @@ nav ul {
 
 .modal-body {
     flex: 1;
+    overflow-y: auto;
+    padding-right: 0.5rem; /* Optional: adds a little padding for the scrollbar */
 }
 
 .variant-section {
@@ -1715,10 +1718,18 @@ nav ul {
     
     .modal-content {
         grid-template-columns: 1fr;
+        max-height: 85vh;
+        overflow-y: auto;
     }
     
     .modal-image-section {
         max-height: 250px;
+        padding: 1rem;
+    }
+    
+    .modal-info-section {
+        padding: 1.5rem;
+        overflow-y: visible; /* Let the parent .modal-content handle the scrolling */
     }
     
     .cart-sidebar {
