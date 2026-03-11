@@ -70,10 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: "doco-licking-mats",
-            name: "DOCO® Licking Mats",
+            name: "Licking Mats for Dogs and Cats",
             category: "accessory",
             variants: [
-                { id: "doco-licking-mats-u", size: "Única", price: 3.90, stock: 50, code: "DOCO LICKING MATS" }
+                { id: "doco-licking-mats-u", size: "Única", price: 3.90, stock: 50, code: "X1X1" }
             ]
         }
     ];
