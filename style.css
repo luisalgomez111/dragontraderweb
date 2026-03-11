@@ -1696,7 +1696,7 @@ nav ul {
     }
     
     .mobile-menu-btn {
-        display: flex;
+        display: none;
     }
     
     .hero-stats {
