@@ -1734,6 +1734,7 @@ nav ul {
     
     .cart-sidebar {
         max-width: 100%;
+        overflow-y: auto;
     }
     
     .footer-grid {
