@@ -2,218 +2,388 @@
 <html lang="es">
 
 <head>
-    <!-- Configuración básica de metadatos y visualización -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dragon Trader - Catálogo Digital | Importaciones China-Venezuela</title>
 
-    <!-- Meta descripción para SEO y previsualización en redes sociales -->
     <meta name="description"
         content="Catálogo digital de Dragon Trader. Descubre nuestra selección de mercancía importada directamente desde China a Venezuela. Calidad y buenos precios.">
 
-    <!-- Fuentes de Google: Outfit para un look moderno y premium -->
+    <!-- Fuentes premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Iconos profesionales de Font Awesome -->
+    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Hoja de estilos principal del proyecto -->
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Encabezado Principal: Menú de navegación fijo -->
-    <header class="main-header">
+    <!-- Header -->
+    <header class="main-header" id="header">
         <div class="container header-content">
-            <div class="logo">
-                <h1>Dragon <span class="highlight">Trader</span></h1>
-            </div>
+            <a href="#inicio" class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-dragon"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-main">Dragon</span>
+                    <span class="logo-sub">Trader</span>
+                </div>
+            </a>
             <nav>
                 <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#catalogo" class="active">Catálogo</a></li>
+                    <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                    <li><a href="#catalogo" class="nav-link">Catálogo</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
                 </ul>
             </nav>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </div>
     </header>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" id="mobile-menu-close">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="#inicio" class="mobile-nav-link">Inicio</a></li>
+                <li><a href="#catalogo" class="mobile-nav-link">Catálogo</a></li>
+                <li><a href="#contacto" class="mobile-nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+
     <main>
-        <!-- Sección Hero: Introducción con animaciones y efectos visuales -->
+        <!-- Hero Section -->
         <section id="inicio" class="hero">
+            <canvas id="particles-canvas" class="particles-canvas"></canvas>
             <div class="hero-overlay"></div>
             <div class="container hero-content">
-                <div class="hero-glass-card animate-reveal">
-                    <!-- Texto dinámico que cambia vía JavaScript -->
-                    <h2 class="animate-text-1">Importación Directa <br> <span class="highlight-wrapper"><span
-                                id="dynamic-text" class="highlight">China - Venezuela</span></span></h2>
-                    <p class="animate-text-2">Descubre nuestra selección exclusiva de productos con la mejor relación
-                        calidad-precio. Traemos lo
-                        que necesitas directamente a tus manos.</p>
-
-                    <!-- Animación decorativa de avión circulando -->
-                    <div class="plane-animation">
-                        <i class="fa-solid fa-plane"></i>
+                <div class="hero-badge" data-aos="fade-down" data-aos-duration="800">
+                    <i class="fa-solid fa-plane"></i>
+                    <span>Importación Directa</span>
+                </div>
+                <h1 class="hero-title" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <span class="title-line">Productos de</span>
+                    <span class="title-line highlight">
+                        <span id="dynamic-text">China</span>
+                    </span>
+                    <span class="title-line">a Venezuela</span>
+                </h1>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    Descubre nuestra selección exclusiva de productos premium con la mejor relación calidad-precio. 
+                    Traemos lo que necesitas directamente a tus manos.
+                </p>
+                <div class="hero-stats" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Productos</span>
                     </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Garantía</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">24h</span>
+                        <span class="stat-label">Respuesta</span>
+                    </div>
+                </div>
+                <div class="hero-cta" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="800">
+                    <a href="#catalogo" class="btn-primary">
+                        <span>Explorar Catálogo</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#contacto" class="btn-secondary">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span>Contactar</span>
+                    </a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <span>Desplázate</span>
+            </div>
+        </section>
 
-                    <div class="animate-button">
-                        <a href="#catalogo" class="btn-primary">Explorar Catálogo</a>
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-shield-check"></i>
+                        </div>
+                        <h3>Compras Seguras</h3>
+                        <p>Pedidos protegidos y verificados en cada etapa del proceso.</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <h3>Envíos a Venezuela</h3>
+                        <p>Logística nacional garantizada a todo el territorio.</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <h3>Calidad Premium</h3>
+                        <p>Productos seleccionados de alta gama y durabilidad.</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h3>Soporte 24/7</h3>
+                        <p>Atención personalizada para todas tus consultas.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección de Catálogo: Aquí se muestran los productos dinámicos -->
+        <!-- Catalog Section -->
         <section id="catalogo" class="catalog-section">
             <div class="container">
-                <div class="section-heading">
-                    <h2>Nuestro <span class="highlight">Catálogo</span></h2>
-                    <p>Explora la mercancía disponible. Haz clic en cualquier producto para ampliar la imagen.</p>
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-tag">Nuestra Colección</span>
+                    <h2 class="section-title">Catálogo de <span class="highlight">Productos</span></h2>
+                    <p class="section-subtitle">Explora nuestra mercancía disponible. Haz clic en cualquier producto para ver detalles y opciones.</p>
                 </div>
 
-                <!-- Contenedor donde JS insertará las tarjetas de productos -->
+                <!-- Filter Tags -->
+                <div class="filter-tags" data-aos="fade-up" data-aos-delay="100">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="collar">Collares</button>
+                    <button class="filter-btn" data-filter="leash">Correas</button>
+                    <button class="filter-btn" data-filter="harness">Pecheras</button>
+                    <button class="filter-btn" data-filter="accessory">Accesorios</button>
+                </div>
+
+                <!-- Products Grid -->
                 <div id="catalog-grid" class="catalog-grid">
-                    <!-- Las tarjetas se generan dinámicamente mediante script.js -->
+                    <!-- Products generated by JS -->
                 </div>
             </div>
         </section>
 
-        <!-- Botón Flotante del Carrito de Compras -->
-        <div id="cart-btn" class="cart-btn">
-            <span class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></span>
-            <span id="cart-count" class="cart-count">0</span>
-        </div>
+        <!-- CTA Section -->
+        <section class="cta-section" id="contacto">
+            <div class="container">
+                <div class="cta-content" data-aos="zoom-in">
+                    <div class="cta-icon">
+                        <i class="fa-brands fa-telegram"></i>
+                    </div>
+                    <h2>¿Tienes preguntas?</h2>
+                    <p>Contáctanos directamente por Telegram o WhatsApp y te responderemos en minutos.</p>
+                    <div class="cta-buttons">
+                        <a href="https://t.me/dragontrader" target="_blank" class="btn-telegram">
+                            <i class="fa-brands fa-telegram"></i>
+                            <span>Telegram</span>
+                        </a>
+                        <a href="https://wa.me/584142294399" target="_blank" class="btn-whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Pie de Página: Información de confianza y marca -->
-    <footer>
-        <!-- Distintivos de confianza para el cliente -->
-        <div class="container footer-trust-badges">
-            <div class="trust-badge">
-                <span class="badge-icon"><i class="fa-solid fa-shield-halved"></i></span>
-                <div class="badge-text">
-                    <h4>Compras Seguras</h4>
-                    <p>Pedidos protegidos y verificados.</p>
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#inicio" class="footer-logo">
+                        <i class="fa-solid fa-dragon"></i>
+                        <span>Dragon Trader</span>
+                    </a>
+                    <p class="footer-description">
+                        Especialistas en importación directa de productos exclusivos desde China. 
+                        Calidad, seguridad y confianza en cada entrega.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/dragontraderca" target="_blank" class="social-link">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://t.me/dragontrader" target="_blank" class="social-link">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                        <a href="https://wa.me/584142294399" target="_blank" class="social-link">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#catalogo">Catálogo</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <span>+58 414-2294399</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>info@dragontrader.com</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Venezuela - Importación Directa</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="trust-badge">
-                <span class="badge-icon"><i class="fa-solid fa-truck-fast"></i></span>
-                <div class="badge-text">
-                    <h4>Envíos a Venezuela</h4>
-                    <p>Logística nacional garantizada.</p>
-                </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Dragon Trader. Todos los derechos reservados.</p>
             </div>
-            <div class="trust-badge">
-                <span class="badge-icon"><i class="fa-solid fa-star"></i></span>
-                <div class="badge-text">
-                    <h4>Calidad Certificada</h4>
-                    <p>Productos de alta gama.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="container footer-grid">
-            <!-- Columna 1: Marca y Misión -->
-            <div class="footer-col brand-col">
-                <div class="footer-logo">
-                    <h2>Dragon <span class="highlight">Trader</span></h2>
-                </div>
-                <p class="footer-mission">Especialistas en importación directa de productos exclusivos. Calidad,
-                    seguridad y confianza en cada entrega.</p>
-            </div>
-
-            <!-- Columna 2: Enlaces Rápidos -->
-            <div class="footer-col links-col">
-                <h4>Empresa</h4>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#catalogo">Catálogo</a></li>
-                    <li><a href="#">Sobre Nosotros</a></li>
-                </ul>
-            </div>
-
-            <!-- Columna 3: Contacto -->
-            <div class="footer-col contact-col">
-                <h4>Contacto</h4>
-                <ul>
-                    <li><i class="fa-solid fa-phone"></i> +58 414-2294399</li>
-                    <li><i class="fa-solid fa-envelope"></i> info@dragontrader.com</li>
-                    <li><i class="fa-solid fa-location-dot"></i> Venezuela - Importación Directa</li>
-                </ul>
-            </div>
-
-            <!-- Columna 4: Redes Sociales -->
-            <div class="footer-col social-col">
-                <h4>Síguenos</h4>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/dragontraderca?igsh=MTh6MWZkZ2xrMjJ5aA==" target="_blank"
-                        title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <div class="container footer-bottom">
-            <p class="copyright">&copy; 2026 Dragon Trader. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <!-- Modal para Ampliar Imagen (Lightbox): Vista detallada del producto -->
-    <div id="image-modal" class="modal">
-        <span class="close-btn">&times;</span>
-        <div class="modal-content">
-            <img id="modal-img" src="" alt="Producto Ampliado">
-            <div id="modal-caption" class="modal-caption"></div>
-            <button id="modal-add-cart" class="btn-primary modal-cart-btn">Agregar al Carrito</button>
+    <!-- Cart Button -->
+    <div id="cart-btn" class="cart-btn">
+        <div class="cart-btn-inner">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count" class="cart-count">0</span>
         </div>
     </div>
 
-    <!-- Barra Lateral del Carrito de Compras (Sidebar) -->
-    <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-header">
-            <h2>Tu Carrito</h2>
-            <span class="close-cart">&times;</span>
-        </div>
-
-        <!-- Contenedor dinámico de items en el carrito -->
-        <div id="cart-items" class="cart-items">
-            <p class="empty-cart-msg">Tu carrito está vacío.</p>
-        </div>
-
-        <!-- Resumen de costos y formulario de pedido -->
-        <div class="cart-footer">
-            <div class="cart-total">
-                <div style="display: flex; flex-direction: column; gap: 5px; width: 100%;">
-                    <div
-                        style="display: flex; justify-content: space-between; font-size: 1rem; color: var(--text-muted); font-weight: 600;">
-                        <span>Items:</span>
-                        <span id="cart-total-count">0</span>
+    <!-- Product Modal -->
+    <div id="image-modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <button class="modal-close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-content">
+                <div class="modal-image-section">
+                    <img id="modal-img" src="" alt="Producto">
+                </div>
+                <div class="modal-info-section">
+                    <div class="modal-header">
+                        <span class="modal-category" id="modal-category">Categoría</span>
+                        <h2 id="modal-title" class="modal-title">Nombre del Producto</h2>
+                        <p id="modal-price" class="modal-price">$0.00</p>
                     </div>
-                    <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 800;">
-                        <span>Total estimado:</span>
-                        <span id="cart-total-price">$0.00</span>
+                    <div class="modal-body">
+                        <div class="variant-section">
+                            <label>Selecciona una opción:</label>
+                            <div id="modal-variants" class="variant-grid">
+                                <!-- Variants generated by JS -->
+                            </div>
+                        </div>
+                        <div class="stock-info" id="modal-stock-info">
+                            <i class="fa-solid fa-box"></i>
+                            <span>Stock disponible</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="modal-add-cart" class="btn-add-cart" disabled>
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>Selecciona una opción</span>
+                        </button>
                     </div>
                 </div>
             </div>
-
-            <!-- Formulario para recopilar datos del comprador y enviar por Telegram -->
-            <form id="checkout-form" class="checkout-form">
-                <input type="text" id="cust-name" placeholder="Nombre y Apellido" required>
-                <input type="tel" id="cust-phone" placeholder="Teléfono" required>
-                <input type="email" id="cust-email" placeholder="Correo Electrónico" required>
-                <textarea id="cust-address" placeholder="Dirección de Envío Completa" required></textarea>
-                <p class="shipping-notice"><i class="fa-solid fa-location-dot"></i> Solo realizamos envíos a Venezuela.
-                </p>
-                <button type="submit" id="checkout-btn" class="btn-primary checkout-btn" disabled>Hacer Pedido</button>
-            </form>
         </div>
     </div>
 
-    <!-- Oscurecimiento de fondo cuando el carrito está abierto -->
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-sidebar-header">
+            <h3>
+                <i class="fa-solid fa-cart-shopping"></i>
+                Tu Carrito
+            </h3>
+            <button class="cart-close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <div class="empty-cart">
+                <div class="empty-cart-icon">
+                    <i class="fa-solid fa-cart-arrow-down"></i>
+                </div>
+                <p>Tu carrito está vacío</p>
+                <span>Agrega productos para comenzar</span>
+            </div>
+        </div>
+        <div class="cart-sidebar-footer">
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Items:</span>
+                    <span id="cart-total-count">0</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="cart-total-price">$0.00</span>
+                </div>
+            </div>
+            <form id="checkout-form" class="checkout-form">
+                <div class="form-group">
+                    <label for="cust-name">Nombre completo</label>
+                    <input type="text" id="cust-name" placeholder="Tu nombre y apellido" required>
+                </div>
+                <div class="form-group">
+                    <label for="cust-phone">Teléfono</label>
+                    <input type="tel" id="cust-phone" placeholder="Ej: 0414-1234567" required>
+                </div>
+                <div class="form-group">
+                    <label for="cust-email">Correo electrónico</label>
+                    <input type="email" id="cust-email" placeholder="tu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="cust-address">Dirección de envío</label>
+                    <textarea id="cust-address" placeholder="Dirección completa para el envío" required></textarea>
+                </div>
+                <div class="shipping-badge">
+                    <i class="fa-solid fa-truck"></i>
+                    <span>Envíos a todo Venezuela</span>
+                </div>
+                <button type="submit" id="checkout-btn" class="btn-checkout" disabled>
+                    <i class="fa-brands fa-telegram"></i>
+                    <span>Enviar Pedido</span>
+                </button>
+            </form>
+        </div>
+    </div>
     <div id="cart-overlay" class="cart-overlay"></div>
 
-    <!-- Lógica principal del catálogo y el carrito -->
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-icon">
+            <i class="fa-solid fa-check-circle"></i>
+        </div>
+        <div class="toast-content">
+            <span class="toast-title">¡Producto agregado!</span>
+            <span class="toast-message">Se añadió al carrito correctamente</span>
+        </div>
+    </div>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
 
