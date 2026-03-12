@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Dragon Trader - Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #D4AF37;
+            --secondary: #1A1A1A;
+            --text: #333;
+            --light: #F4F4F4;
+            --white: #FFFFFF;
+        }
+
+        @media print {
+            .no-print { display: none; }
+            body { background: white; padding: 0; }
+            .product-card { break-inside: avoid; border: 1px solid #ddd !important; }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            margin: 0;
+            color: var(--secondary);
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .catalog-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .product-card {
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .product-img {
+            width: 120px;
+            height: 120px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #999;
+            flex-shrink: 0;
+            border: 1px solid #eee;
+        }
+
+        .product-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 0 0 5px 0;
+        }
+
+        .product-category {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th {
+            text-align: left;
+            padding: 8px;
+            background: #F9FAFB;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #F3F4F6;
+        }
+
+        .price {
+            font-weight: 700;
+            color: #059669;
+        }
+
+        .stock {
+            color: #6B7280;
+        }
+
+        .btn-print {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s;
+        }
+
+        .btn-print:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn-print no-print" onclick="window.print()">Exportar a PDF / Imprimir</button>
+
+    <div class="container">
+        <header>
+            <h1>DRAGON TRADER</h1>
+            <div class="subtitle">Catálogo Digital de Importaciones</div>
+            <div class="catalog-info">
+                <span>Fecha: 11 de Marzo, 2026</span>
+                <span>Ubicación: Venezuela - Importación Directa</span>
+            </div>
+        </header>
+
+        <div class="product-grid">
+            <!-- Producto 1: Signature Nylon Collar -->
+            <div class="product-card">
+                <div class="product-img"><img src="assets/img/DCSN002.webp" alt="Signature Nylon Collar"></div>
+                <div class="product-details">
+                    <span class="product-category">Collar</span>
+                    <h2 class="product-name">Signature Nylon Collar</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>DCSN002</td><td>XS</td><td class="price">$2.30</td><td class="stock">43</td></tr>
+                            <tr><td>DCSN002</td><td>S</td><td class="price">$2.70</td><td class="stock">1</td></tr>
+                            <tr><td>DCSN002</td><td>M</td><td class="price">$3.80</td><td class="stock">45</td></tr>
+                            <tr><td>DCSN002</td><td>L</td><td class="price">$4.20</td><td class="stock">49</td></tr>
+                            <tr><td>DCSN002</td><td>XL</td><td class="price">$4.90</td><td class="stock">42</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Producto 2: Signature Nylon Dog Leash -->
+            <div class="product-card">
+                <div class="product-img"><img src="assets/img/DCSN1048 (4ft).webp" alt="Signature Nylon Dog Leash"></div>
+                <div class="product-details">
+                    <span class="product-category">Correa</span>
+                    <h2 class="product-name">Signature Nylon Dog Leash</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>DCSN1048 (4ft)</td><td>S</td><td class="price">$3.10</td><td class="stock">44</td></tr>
+                            <tr><td>DCSN1048 (4ft)</td><td>XL</td><td class="price">$4.80</td><td class="stock">39</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Producto 3: DOCO® LOCO Leash -->
+            <div class="product-card">
+                <div class="product-img"><img src="assets/img/DCL1060.webp" alt="DOCO® LOCO Leash"></div>
+                <div class="product-details">
+                    <span class="product-category">Correa</span>
+                    <h2 class="product-name">DOCO® LOCO Leash - 5ft</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>DCL1060</td><td>S</td><td class="price">$3.70</td><td class="stock">79</td></tr>
+                            <tr><td>DCL1060</td><td>M</td><td class="price">$4.40</td><td class="stock">80</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Producto 4: DOCO® Super Confortable -->
+            <div class="product-card">
+                <div class="product-img"><img src="assets/img/DCA313.webp" alt="DOCO® Super Confortable"></div>
+                <div class="product-details">
+                    <span class="product-category">Pechera</span>
+                    <h2 class="product-name">DOCO® Super Confortable</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>DCA313</td><td>XS</td><td class="price">$8.53</td><td class="stock">34</td></tr>
+                            <tr><td>DCA313</td><td>S</td><td class="price">$8.81</td><td class="stock">16</td></tr>
+                            <tr><td>DCA313</td><td>M</td><td class="price">$9.52</td><td class="stock">18</td></tr>
+                            <tr><td>DCA313</td><td>L</td><td class="price">$10.83</td><td class="stock">13</td></tr>
+                            <tr><td>DCA313</td><td>XL</td><td class="price">$12.33</td><td class="stock">17</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Producto 5: VARIO Power Harness -->
+            <div class="product-card">
+                <div class="product-img"><img src="assets/img/DVX1.webp" alt="VARIO Power Harness"></div>
+                <div class="product-details">
+                    <span class="product-category">Pechera</span>
+                    <h2 class="product-name">VARIO Power Harness</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>DVX1</td><td>XS</td><td class="price">$7.80</td><td class="stock">17</td></tr>
+                            <tr><td>DVX1</td><td>S</td><td class="price">$8.10</td><td class="stock">14</td></tr>
+                            <tr><td>DVX1</td><td>M</td><td class="price">$9.30</td><td class="stock">11</td></tr>
+                            <tr><td>DVX1</td><td>L</td><td class="price">$9.90</td><td class="stock">16</td></tr>
+                            <tr><td>DVX1</td><td>XL</td><td class="price">$12.10</td><td class="stock">12</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Producto 6: Licking Mats -->
+            <div class="product-card">
+                <div class="product-img"><img src="assets/img/X1X1.webp" alt="Licking Mats"></div>
+                <div class="product-details">
+                    <span class="product-category">Accesorio</span>
+                    <h2 class="product-name">Licking Mats for Dogs and Cats</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>X1X1</td><td>Única</td><td class="price">$3.90</td><td class="stock">50</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Producto 7: PET PADS -->
+            <div class="product-card">
+                <div class="product-img"><img src="assets/img/PP6060.webp" alt="PET PADS"></div>
+                <div class="product-details">
+                    <span class="product-category">Accesorio</span>
+                    <h2 class="product-name">PET PADS 1 600x600 SDL</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>PP6060</td><td>Única</td><td class="price">$12.20</td><td class="stock">1000</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Producto 8: Antibacterial Wipes -->
+            <div class="product-card">
+                <div class="product-img"><img src="assets/img/PW1813.webp" alt="Antibacterial pet wipes"></div>
+                <div class="product-details">
+                    <span class="product-category">Accesorio</span>
+                    <h2 class="product-name">Antibacterial pet wipes 18x13 CM</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>PW1813</td><td>Única</td><td class="price">$1.80</td><td class="stock">500</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Producto 9: Pet wet wipes gloves -->
+            <div class="product-card">
+                <div class="product-img"><img src="assets/img/PG1524.webp" alt="Pet wet wipes gloves"></div>
+                <div class="product-details">
+                    <span class="product-category">Accesorio</span>
+                    <h2 class="product-name">Pet wet wipes gloves 15x24 CM</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>PG1524</td><td>Única</td><td class="price">$1.90</td><td class="stock">500</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Producto 10: Pet Poop Bags -->
+            <div class="product-card">
+                <div class="product-img"><img src="assets/img/PB2333.webp" alt="Pet Poop Bags"></div>
+                <div class="product-details">
+                    <span class="product-category">Accesorio</span>
+                    <h2 class="product-name">Pet Poop Bags 23*33 CM</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>PB2333</td><td>Única</td><td class="price">$0.61</td><td class="stock">1200</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Producto 11: Pet drinking bottle -->
+            <div class="product-card">
+                <div class="product-img"><img src="assets/img/DBFB01.webp" alt="Pet drinking bottle"></div>
+                <div class="product-details">
+                    <span class="product-category">Accesorio</span>
+                    <h2 class="product-name">Pet drinking bottle+food box</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Talla</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>DBFB01</td><td>Única</td><td class="price">$8.40</td><td class="stock">50</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Dragon Trader. Catálogo generado automáticamente para uso comercial.</p>
+            <p>China - Venezuela | Importaciones de Alta Calidad</p>
+        </footer>
+    </div>
+</body>
+</html>
