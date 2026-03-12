@@ -75,6 +75,46 @@ document.addEventListener('DOMContentLoaded', () => {
             variants: [
                 { id: "doco-licking-mats-u", size: "Única", price: 3.90, stock: 50, code: "X1X1" }
             ]
+        },
+        {
+            id: "pet-pads",
+            name: "PET PADS 1 600x600 SDL",
+            category: "accessory",
+            variants: [
+                { id: "pet-pads-u", size: "Única", price: 12.20, stock: 1000, code: "PP6060" }
+            ]
+        },
+        {
+            id: "pet-wipes",
+            name: "Antibacterial pet wipes 18x13 CM",
+            category: "accessory",
+            variants: [
+                { id: "pet-wipes-u", size: "Única", price: 1.80, stock: 500, code: "PW1813" }
+            ]
+        },
+        {
+            id: "pet-wipes-gloves",
+            name: "Pet wet wipes gloves 15x24 CM",
+            category: "accessory",
+            variants: [
+                { id: "pet-wipes-gloves-u", size: "Única", price: 1.90, stock: 500, code: "PG1524" }
+            ]
+        },
+        {
+            id: "pet-poop-bags",
+            name: "Pet Poop Bags 23*33 CM",
+            category: "accessory",
+            variants: [
+                { id: "pet-poop-bags-u", size: "Única", price: 0.61, stock: 1200, code: "PB2333" }
+            ]
+        },
+        {
+            id: "pet-drinking-bottle",
+            name: "Pet drinking bottle+food box",
+            category: "accessory",
+            variants: [
+                { id: "pet-drinking-bottle-u", size: "Única", price: 8.40, stock: 50, code: "DBFB01" }
+            ]
         }
     ];
 
