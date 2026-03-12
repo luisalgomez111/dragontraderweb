@@ -1731,6 +1731,10 @@ nav ul {
         padding: 1.5rem;
         overflow-y: visible; /* Let the parent .modal-content handle the scrolling */
     }
+
+    .scroll-indicator {
+        display: none;
+    }
     
     .cart-sidebar {
         max-width: 100%;

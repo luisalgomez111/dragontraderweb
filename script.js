@@ -110,6 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartTotalCount = document.getElementById('cart-total-count');
     const cartTotalPrice = document.getElementById('cart-total-price');
 
+    // Ensure cart is closed on load for mobile
+    if (window.innerWidth <= 768) {
+        cartSidebar.classList.remove('open');
+        cartOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
     const checkoutForm = document.getElementById('checkout-form');
     const checkoutBtn = document.getElementById('checkout-btn');
 
